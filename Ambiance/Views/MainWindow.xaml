@@ -3,10 +3,33 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:my ="clr-namespace:Ambiance.Views"
         xmlns:local="clr-namespace:Ambiance"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
-    </Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel >
+            <Menu DockPanel.Dock="Top"  >
+                <MenuItem Header="_File" Name="FileMenu">
+                    <MenuItem Header="_New Campaign"/>
+                    <MenuItem Header="_Open Campaign"/>
+                    <Separator />
+                    <MenuItem Header="_Exit" />
+                </MenuItem>
+                <MenuItem Header="_Audio">
+                    <MenuItem Header="_Stop All" />
+                </MenuItem>
+                <MenuItem Header="_Help">
+                    <MenuItem Header="_Info" />
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+        <Grid Row="1">
+            <my:CampaignView></my:CampaignView>
+        </Grid>
+        </Grid>
 </Window>
