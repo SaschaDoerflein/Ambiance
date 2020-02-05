@@ -1,0 +1,68 @@
+﻿<UserControl x:Class="Ambiance.Views.ScenarioView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ambiance.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="5"/>
+            <ColumnDefinition Width="60*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <ListView Grid.Column="0" ItemsSource="{Binding Atmos}">
+                <ListView.Resources>
+                    <ContextMenu x:Key="listViewContextMenu">
+                        <MenuItem Header="Play" Command="{Binding PlayAudioCommand}"/>
+                        <MenuItem Header="Pause" Command="{Binding PauseAudioCommand}"/>
+                        <MenuItem Header="Stop" Command="{Binding StopAudioCommand}"/>
+                    </ContextMenu>
+                </ListView.Resources>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="ContextMenu" Value="{StaticResource listViewContextMenu}"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                       <local:AudioView></local:AudioView>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" Grid.Row="1"/>
+        <Grid Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="85*"/>
+            </Grid.RowDefinitions>
+            <TextBox x:Name="txtSelectedName" Text="{Binding Name, Mode=TwoWay}" TextChanged="txtSelectedName_TextChanged" Width="Auto" Height="Auto"></TextBox>
+            <Button Grid.Row="1" Command="{Binding SwitchAtmosCommand}"  Content="{Binding ButtonText}"></Button>
+
+            <ListView Grid.Row="2" ItemsSource="{Binding Sounds}">
+                <ListView.Resources>
+                    <ContextMenu x:Key="listViewContextMenu">
+                        <MenuItem Header="Play" Command="{Binding PlayAudioCommand}"/>
+                    </ContextMenu>
+                </ListView.Resources>
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="ContextMenu" Value="{StaticResource listViewContextMenu}"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <Label Content="{Binding Name}"></Label>
+                            <TextBox Text="{Binding Key}"></TextBox>
+                        </WrapPanel>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </Grid>
+</UserControl>

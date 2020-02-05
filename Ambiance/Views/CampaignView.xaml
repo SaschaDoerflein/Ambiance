@@ -3,10 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:my ="clr-namespace:Ambiance.Views"
              xmlns:local="clr-namespace:Ambiance.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            <TextBlock> Hallo Welt</TextBlock>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*" />
+            <ColumnDefinition Width="5" />
+            <ColumnDefinition Width="70*" />
+        </Grid.ColumnDefinitions>
+        <ListView Grid.Column="0" ItemsSource="{Binding Audios}">
+            <ListView.Resources>
+                <ContextMenu x:Key="listViewContextMenu">
+                    <MenuItem Header="Play" Command="{Binding PlayAudioCommand}"/>
+                    <MenuItem Header="Pause" Command="{Binding PauseAudioCommand}"/>
+                    <MenuItem Header="Stop" Command="{Binding StopAudioCommand}"/>
+                    <Separator />
+                    <MenuItem Header="Add to Scenario Music" Command="{Binding AddAtmoToCurrentScenarioCommand}"/>
+                    <MenuItem Header="Add to Scenario Sound" Command="{Binding AddSoundToCurrentScenarioCommand}"/>
+                </ContextMenu>
+            </ListView.Resources>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="ContextMenu" Value="{StaticResource listViewContextMenu}"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate >
+                <DataTemplate>
+                    <WrapPanel >
+                        <TextBlock Text="{Binding Name}"/>
+                    </WrapPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" Grid.Row="1"/>
+        <my:ScenarioView Grid.Column="2" x:Name="scenarioView"></my:ScenarioView>
     </Grid>
 </UserControl>

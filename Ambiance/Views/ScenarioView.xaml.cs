@@ -10,18 +10,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Ambiance.ViewModels;
 
 namespace Ambiance.Views
 {
     /// <summary>
-    /// Interaction logic for CampaignView.xaml
+    /// Interaction logic for ScenarioView.xaml
     /// </summary>
-    public partial class CampaignView : UserControl
+    public partial class ScenarioView : UserControl
     {
-        public CampaignView()
+        public ScenarioView()
         {
             InitializeComponent();
+        }
+
+        private void txtSelectedName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            BindingOperations.GetBindingExpression(txtSelectedName, TextBox.TextProperty).UpdateSource();
         }
     }
 }

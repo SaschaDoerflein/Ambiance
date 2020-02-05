@@ -4,9 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:my ="clr-namespace:Ambiance.Views"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         xmlns:local="clr-namespace:Ambiance"
+        xmlns:visualBasic="clr-namespace:Microsoft.VisualBasic;assembly=Microsoft.VisualBasic.Core"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -14,9 +17,11 @@
         </Grid.RowDefinitions>
         <DockPanel >
             <Menu DockPanel.Dock="Top"  >
-                <MenuItem Header="_File" Name="FileMenu">
-                    <MenuItem Header="_New Campaign"/>
+                <MenuItem Header="_File" x:Name="fileMenu">
+                    <MenuItem Header="_New Campaign" Command="{Binding NewCampaignCommand}"/>
                     <MenuItem Header="_Open Campaign"/>
+                    <Separator/>
+                    <MenuItem Header="_Refresh" Command="{Binding RefreshCommand}"></MenuItem>
                     <Separator />
                     <MenuItem Header="_Exit" />
                 </MenuItem>
@@ -29,7 +34,7 @@
             </Menu>
         </DockPanel>
         <Grid Row="1">
-            <my:CampaignView></my:CampaignView>
+            <my:CampaignView x:Name="campaignView"></my:CampaignView>
         </Grid>
         </Grid>
 </Window>

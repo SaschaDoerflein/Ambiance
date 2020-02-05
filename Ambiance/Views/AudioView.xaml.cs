@@ -10,16 +10,15 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Ambiance.ViewModels;
 
 namespace Ambiance.Views
 {
     /// <summary>
-    /// Interaction logic for CampaignView.xaml
+    /// Interaction logic for AudioView.xaml
     /// </summary>
-    public partial class CampaignView : UserControl
+    public partial class AudioView : UserControl
     {
-        public CampaignView()
+        public AudioView()
         {
             InitializeComponent();
         }
